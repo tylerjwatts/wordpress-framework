@@ -5,6 +5,9 @@
  * @docs https://postcss.org/
  * @since 1.0.0
  */
+
+const autoprefixer = require('autoprefixer');
+
 module.exports = (projectOptions) => {
   const postcssOptions = {}
   if (projectOptions.projectCss.use === 'sass') {
@@ -13,7 +16,9 @@ module.exports = (projectOptions) => {
       plugins: [
         // To parse CSS and add vendor prefixes to CSS rules using values from Can I Use.
         // https://github.com/postcss/autoprefixer
-        require('autoprefixer'),
+        autoprefixer({
+          overrideBrowserslist: ['last 3 versions', '> 1%']
+        })
       ],
     })
   } else {
